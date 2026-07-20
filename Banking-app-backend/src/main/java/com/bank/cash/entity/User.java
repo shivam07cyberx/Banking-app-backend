@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.bank.cash.enums.Role;
-import com.bank.cash.enums.TypeName;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -20,10 +19,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,36 +36,28 @@ public class User {
 	private Long id;
 	
 	
-	@NotBlank
-	@Column(nullable = false)
+
+    @Column(nullable = false)
+
 	private String userFullName;
 	
-	@Size(min = 8, max = 30)
-	@NotBlank
-	@Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 30)
+
 	private String password;
 	
-	
+    @Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
 	
-	@NotBlank
-	@Pattern(regexp = "\\d{10}")
+	
+    @Column(nullable = false, length = 10)
 
-	@Column(nullable = false , length = 10)
 	private String mobile;
 	
+	
+    @Column(nullable = false, unique = true, length = 100)
 
-	
-
-	
-	
-	
-	@Email
-	@NotBlank
-
-	@Column(unique = true, nullable = false, length = 100)
 private String email;
 	
 	

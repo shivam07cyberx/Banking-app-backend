@@ -8,11 +8,11 @@ import lombok.Setter;
 public class SuccessResponse <T> extends ApiResponse {
 
 	
-private T date;
+private T data;
 
-public SuccessResponse(int status, String message,T date) {
+public SuccessResponse(int status, String message,T data) {
 	super(status, message);
-	this.date = date;
+	this.data = data;
 }	
 
 
