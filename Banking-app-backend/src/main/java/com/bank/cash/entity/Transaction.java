@@ -41,9 +41,15 @@ public class Transaction {
 	
 	private Double amount;
 	
-@ManyToOne(cascade = CascadeType.ALL)
-@JoinColumn(name="account_id")
-	private Account account;
+	@ManyToOne
+	@JoinColumn(name="from_account")
+	private Account fromAccount;
+
+	@ManyToOne
+	@JoinColumn(name="to_account")
+	private Account toAccount;
+	
+	// meta data
 	
 @Version
 private Integer noOfUpdate;

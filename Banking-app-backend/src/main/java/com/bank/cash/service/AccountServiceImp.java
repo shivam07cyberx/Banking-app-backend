@@ -1,5 +1,21 @@
 package com.bank.cash.service;
 
-public class AccountServiceImp {
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bank.cash.entity.Account;
+import com.bank.cash.repository.IAccountRepository;
+
+public class AccountServiceImp implements AccountService{
+	
+	@Autowired
+	IAccountRepository accountRepository;
+
+	@Override
+	public Account OpenAccount(Account acccount) {
+		
+		
+		
+		return accountRepository.save(acccount);
+	}
 
 }

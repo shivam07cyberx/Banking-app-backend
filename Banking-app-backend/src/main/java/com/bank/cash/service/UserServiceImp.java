@@ -26,7 +26,17 @@ public class UserServiceImp implements UserService {
 		
 		User user=modelMapper.map(userDto, User.class);
 		User savedUser= userRepo.save(user);
+		
+		
+		
+		
 		return modelMapper.map(savedUser,UserDTO.class);
+		
+		
+		
+		
+		
+		
 	}
 
 

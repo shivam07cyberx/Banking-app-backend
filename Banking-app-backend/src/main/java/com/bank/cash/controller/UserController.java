@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.cash.dto.UserDTO;
+import com.bank.cash.entity.Account;
 import com.bank.cash.response.ApiResponse;
 import com.bank.cash.response.SuccessResponse;
 import com.bank.cash.service.UserService;
@@ -28,19 +29,15 @@ public class UserController {
 		UserDTO user= userService.addUser(userDto);
 		
 		user.setAccountType(userDto.getAccountType());
+		
+		
+		
 	    SuccessResponse<UserDTO> response =
                 new SuccessResponse<>(
                         HttpStatus.CREATED.value(),
                         "User created successfully",
                         user
                 );
-	    
-	    
-	    
-	    
-	    
-	    
-
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
