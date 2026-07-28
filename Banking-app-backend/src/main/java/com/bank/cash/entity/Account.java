@@ -65,8 +65,11 @@ public class Account {
 	private AccountType accountType;
 	
 	
-	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-	private List<Transaction> transactions;
+	@OneToMany(mappedBy = "fromAccount", fetch = FetchType.LAZY)
+	private List<Transaction> debitTransactions;
+
+	@OneToMany(mappedBy = "toAccount", fetch = FetchType.LAZY)
+	private List<Transaction> creditTransactions;
 	
 	
 //	..................meta data.......................

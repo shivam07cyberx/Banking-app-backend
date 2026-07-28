@@ -6,11 +6,6 @@ public class AccountRequestDTO {
 
     private Long userId;
 
-    private Long accountTypeId;
-
-    private String branchName;
-
-    private String ifscCode;
-
-    private BigDecimal openingBalance;
+   private Double balance;
+   
 }

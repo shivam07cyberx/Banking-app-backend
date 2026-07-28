@@ -10,5 +10,5 @@ public class TransferRequestDTO {
 
     private BigDecimal amount;
 
-    private String remarks;
+
 }

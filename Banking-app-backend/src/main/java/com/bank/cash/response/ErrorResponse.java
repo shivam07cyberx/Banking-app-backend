@@ -12,11 +12,11 @@ public class ErrorResponse<T> extends ApiResponse {
 	
 	
 	
-	private List<String> errors;
+	private String errors;
 
-	public ErrorResponse(int status, String message, List<String> errors) {
+	public ErrorResponse(int status, Boolean message, String errors) {
 		super(status, message);
-		this.errors=errors;;
+		this.errors=errors;
 	}
 	
 	

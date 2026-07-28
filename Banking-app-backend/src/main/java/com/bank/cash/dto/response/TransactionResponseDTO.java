@@ -17,7 +17,7 @@ public class TransactionResponseDTO {
 
     private Long toAccount;
 
-    private String remarks;
+  
 
     private LocalDateTime transactionTime;
 }

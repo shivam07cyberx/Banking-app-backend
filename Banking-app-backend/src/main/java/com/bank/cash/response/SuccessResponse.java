@@ -10,8 +10,8 @@ public class SuccessResponse <T> extends ApiResponse {
 	
 private T data;
 
-public SuccessResponse(int status, String message,T data) {
-	super(status, message);
+public SuccessResponse(int status, Boolean success,T data) {
+	super(status, success);
 	this.data = data;
 }	
 

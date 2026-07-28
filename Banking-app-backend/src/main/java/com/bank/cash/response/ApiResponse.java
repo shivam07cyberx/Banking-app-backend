@@ -12,7 +12,7 @@ public class ApiResponse {
 	
 	private int status;
 	
-	private String message;
+	private Boolean success;
 	
 	private LocalDateTime timestamp;
 
@@ -21,10 +21,10 @@ public class ApiResponse {
 		this.timestamp = LocalDateTime.now();
 	}
 
-	public ApiResponse(int status, String message) {
+	public ApiResponse(int status, Boolean success) {
 		super();
 		this.status = status;
-		this.message = message;
+		this.success = success;
 		this.timestamp = LocalDateTime.now();
 	}
 	

@@ -1,11 +1,20 @@
 package com.bank.cash.service;
 
-import java.util.List;
-
-import com.bank.cash.dto.UserDTO;
+import com.bank.cash.dto.request.UserRequestDTO;
+import com.bank.cash.dto.response.UserResponseDTO;
+import com.bank.cash.entity.User;
 
 public interface UserService  {
 
-	UserDTO addUser(UserDTO user);
-	List<UserDTO> viewAllUser();
+	public UserResponseDTO registerUser(UserRequestDTO user);
+	
+	public UserResponseDTO findUserById(Long id);
+	
+//	public UserResponseDTO UpdateUser(Long id, UserRequestDTO userRes);
+	
+	
+	public User findUserEntityById(Long id);
+	
+	
+
 }

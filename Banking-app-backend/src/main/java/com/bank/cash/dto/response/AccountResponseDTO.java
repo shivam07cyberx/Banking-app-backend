@@ -2,6 +2,9 @@ package com.bank.cash.dto.response;
 
 import java.math.BigDecimal;
 
+import lombok.Data;
+
+@Data
 public class AccountResponseDTO {
 
     private Long accountNumber;
