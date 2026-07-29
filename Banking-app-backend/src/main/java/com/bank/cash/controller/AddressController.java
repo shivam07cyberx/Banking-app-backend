@@ -28,19 +28,13 @@ public class AddressController {
 	
 	private AddressService addressServ;
 	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private ModelMapper modelMapper;
+
 	
 	@PostMapping("/add/{id}")
 	public ResponseEntity<ApiResponse> addAddress( @PathVariable Long id,@RequestBody AddressRequestDTO addressRequest ){
 		
 		
-		AddressResponseDTO response=
-		
-	addressServ.addAddress(id,addressRequest);
+		AddressResponseDTO response= addressServ.addAddress(id,addressRequest);
 		
 		
 		ApiResponse success= new SuccessResponse<>(HttpStatus.CREATED.value(), true, response);

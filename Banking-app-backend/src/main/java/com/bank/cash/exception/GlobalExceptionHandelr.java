@@ -28,5 +28,15 @@ public class GlobalExceptionHandelr {
 		return new ResponseEntity<ApiResponse>(error,HttpStatus.NOT_FOUND);
 		
 	}
+	
+	@ExceptionHandler(InsufficientBalanceException.class)
+	public ResponseEntity<ApiResponse> userNotFoundException (InsufficientBalanceException ex){
+		
+		ApiResponse error = new ErrorResponse<String>(HttpStatus.UNPROCESSABLE_CONTENT.value(),false ,ex.getMessage());
+		
+		return new ResponseEntity<ApiResponse>(error,HttpStatus.UNPROCESSABLE_CONTENT);
+		
+	}
+	
 
 }

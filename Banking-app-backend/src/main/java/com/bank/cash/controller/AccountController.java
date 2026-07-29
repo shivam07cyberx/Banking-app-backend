@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.cash.dto.request.AccountRequestDTO;
 import com.bank.cash.dto.request.AccountTypeRequestDTO;
 import com.bank.cash.dto.request.UserRequestDTO;
 import com.bank.cash.dto.response.AccountResponseDTO;
@@ -32,33 +33,18 @@ import jakarta.transaction.Transactional;
 @RequestMapping("/account")
 public class AccountController {
 	
-	@Autowired
-	private ModelMapper modelMapper;
+	
 	
 	@Autowired
 	private AccountService accountService;
-	@Autowired
-	private UserService userService;
 	
-	@PostMapping("/open/{userId}")
+	@PostMapping("/open")
 	
-	public ResponseEntity<ApiResponse> openAccount(@PathVariable Long userId, @RequestBody AccountTypeRequestDTO requestDto){
+	public ResponseEntity<ApiResponse> openAccount(@RequestBody AccountRequestDTO accountTypeDto){
 		
-		User userEntity = userService.findUserEntityById(userId);
-
-		Account account = modelMapper.map(requestDto, Account.class);
-
-		account.setUser(userEntity);
-		account.setBalance(2000.0);
-		account.setBranchName("kharagpur");
 		
-		userEntity.setAccounts(List.of(account));
-
-		accountService.OpenAccount(account);
-
-		AccountResponseDTO response =
-		        modelMapper.map(account, AccountResponseDTO.class);
-	
+		AccountResponseDTO response=  accountService.OpenAccount(accountTypeDto);
+		
 		
 	    ApiResponse successRespone= new SuccessResponse<AccountResponseDTO>(HttpStatus.CREATED.value(), true,response);
 		

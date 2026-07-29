@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.bank.cash.enums.TypeName;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -56,9 +57,11 @@ private List<Account> accounts;
 	    private Integer noOfUpdate;
 
 	    @CreationTimestamp
+	    @Column(insertable = true, updatable = false)
 	    private LocalDateTime createdAt;
 
 	    @UpdateTimestamp
+	    @Column(updatable = true)
 	    private LocalDateTime updatedAt;
 
 }

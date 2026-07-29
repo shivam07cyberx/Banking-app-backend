@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.TrueFalseConverter;
 
 import com.bank.cash.enums.Role;
 
@@ -25,6 +26,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 
@@ -33,6 +36,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Account {
 
 	
@@ -42,23 +46,27 @@ public class Account {
 	@SequenceGenerator(name="gen1",sequenceName = "account_number", initialValue = 10000000, allocationSize = 1)
 	@GeneratedValue( generator = "gen1", strategy = GenerationType.IDENTITY)
 	
+	
 	private Long accountNumber;
 	
+	@NonNull
 	private Double balance;
 	
 	
 	@Column(length = 100 )
-	
+	@NonNull
 	private String branchName;
 	
 	@Size(min = 6)
+	@NonNull
 	private String ifscCode;
 	
+	@NonNull
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	
+	@NonNull
 	@ManyToOne(cascade = CascadeType.ALL )
 	
 	@JoinColumn(name="account_type_id")
@@ -79,9 +87,11 @@ public class Account {
 	private Integer noOfUpdate;
 	
 	@CreationTimestamp
+	@Column(insertable = true)
 	private LocalDateTime accounntCreatedAt;
 	
 	@UpdateTimestamp
+	@Column(insertable = false, updatable = true )
 	private LocalDateTime accountUpdatedAt;
 	
 	

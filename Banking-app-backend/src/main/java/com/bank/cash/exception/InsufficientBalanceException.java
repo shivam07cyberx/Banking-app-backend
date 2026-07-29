@@ -1,5 +1,10 @@
 package com.bank.cash.exception;
 
-public class InsufficientBalanceException {
+public class InsufficientBalanceException extends RuntimeException {
+	
+	
+	public InsufficientBalanceException(String msg) {
+		super(msg);
+	}
 
 }

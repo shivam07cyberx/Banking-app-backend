@@ -4,13 +4,22 @@ import java.math.BigDecimal;
 
 import com.bank.cash.enums.TypeName;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class AccountTypeRequestDTO {
 
     private TypeName typeName;
 
-    private BigDecimal interestRate;
+    private Double interestRate;
 
-    private BigDecimal minimumBalance;
+    private Double minimumBalance;
 
-    private BigDecimal annualMaintenanceCharge;
+    private Double annualMaintananceCharge;
+    
+    
+    
+    
 }

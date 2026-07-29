@@ -5,19 +5,22 @@ import java.time.LocalDateTime;
 
 import com.bank.cash.enums.TransactionType;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class TransactionResponseDTO {
 
-    private Long transactionId;
+  
 
     private TransactionType transactionType;
 
-    private BigDecimal amount;
+    private Double amount;
 
     private Long fromAccount;
 
     private Long toAccount;
-
-  
 
     private LocalDateTime transactionTime;
 }

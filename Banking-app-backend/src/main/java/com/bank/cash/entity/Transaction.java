@@ -1,6 +1,7 @@
 package com.bank.cash.entity;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,6 +22,8 @@ import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -28,6 +31,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Transaction {
 	
 	@Id
@@ -35,16 +39,19 @@ public class Transaction {
 	private Long transactionId;
 	
 	
-	
+	@NonNull
 	@Enumerated(EnumType.STRING)
 	private TransactionType transactionType;
 	
+	@NonNull
 	private Double amount;
 	
 	@ManyToOne
+	
 	@JoinColumn(name="from_account")
 	private Account fromAccount;
 
+	@NonNull
 	@ManyToOne
 	@JoinColumn(name="to_account")
 	private Account toAccount;
