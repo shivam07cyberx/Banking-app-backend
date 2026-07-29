@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.cash.dto.request.DepositRequestDTO;
 import com.bank.cash.dto.request.TransferRequestDTO;
+import com.bank.cash.dto.request.WithdrawRequestDTO;
+import com.bank.cash.dto.response.AccountResponseDTO;
 import com.bank.cash.dto.response.TransactionResponseDTO;
-import com.bank.cash.entity.Transaction;
 import com.bank.cash.response.ApiResponse;
 import com.bank.cash.response.SuccessResponse;
 import com.bank.cash.service.TransactionService;
@@ -27,11 +29,42 @@ public class TransactionController {
 		
 	 TransactionResponseDTO transaction=	transectionService.transferMoney(transferRequestDto);
 		
-	ApiResponse success= new SuccessResponse<	 TransactionResponseDTO>(HttpStatus.OK.value(),true , transaction);
+	ApiResponse success= new SuccessResponse<TransactionResponseDTO>(HttpStatus.OK.value(),true , transaction);
 	
 	return new ResponseEntity<ApiResponse>(success,HttpStatus.OK);
 		
 		
 	}
+	
+	
+	@PostMapping("/withdraw")
+	public ResponseEntity<ApiResponse> withdrawMoney(@RequestBody WithdrawRequestDTO withdrawRequest){
+		
+		AccountResponseDTO respond =transectionService.withDrawMoney(withdrawRequest);
+		
+		ApiResponse success= new SuccessResponse<AccountResponseDTO>(HttpStatus.OK.value(),true , respond);
+		
+		return new ResponseEntity<ApiResponse>(success,HttpStatus.OK);
+		
 
+		
+	}
+	
+	
+@PostMapping("/deposite")
+public ResponseEntity<ApiResponse> depositeMoney( @RequestBody DepositRequestDTO depositeRequest){
+	
+	AccountResponseDTO respond =transectionService.depositeMoney(depositeRequest);
+	
+	ApiResponse success= new SuccessResponse<AccountResponseDTO>(HttpStatus.OK.value(),true , respond);
+	
+	return new ResponseEntity<ApiResponse>(success,HttpStatus.OK);
+	
+	
+	
+}
+	
+	
+	
+	
 }

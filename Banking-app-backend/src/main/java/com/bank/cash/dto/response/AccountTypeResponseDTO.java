@@ -1,10 +1,9 @@
 package com.bank.cash.dto.response;
 
-import java.math.BigDecimal;
 
+import com.bank.cash.enums.AccountStatus;
 import com.bank.cash.enums.TypeName;
 
-import jakarta.validation.constraints.NegativeOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +22,6 @@ public class AccountTypeResponseDTO {
     private Double minimumBalance;
 
     private Double annualMaintananceCharge;
+    
+    private AccountStatus accountStatus;
 }

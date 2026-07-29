@@ -12,6 +12,7 @@ import com.bank.cash.entity.AccountType;
 import com.bank.cash.entity.Address;
 import com.bank.cash.entity.Transaction;
 import com.bank.cash.entity.User;
+import com.bank.cash.enums.AccountStatus;
 import com.bank.cash.enums.TransactionType;
 import com.bank.cash.enums.TypeName;
 import com.bank.cash.exception.UserNotFoundException;
@@ -68,18 +69,22 @@ public class AccountServiceImp implements AccountService{
 		
 			
 			 account =new Account(accountRequestDto.getBalance(), address.getCity(), address.getState()+"8989", user, accountType);
-			
+			account.setAccountStatus(AccountStatus.ACTIVE);
 			
 			account.setAccountType(accountType);
 			
-			Transaction transaction= new Transaction(TransactionType.DEPOSIT,account.getBalance(), account);
+			Transaction transaction= new Transaction(TransactionType.DEPOSIT,account.getBalance());
+			transaction.setToAccount(account);
 			
 			accountRepository.save(account);
 			transactionRepository.save(transaction);
 			accountTypeRepository.save(accountType);
 			
+			AccountResponseDTO accountResponse=  modelMapper.map(account, AccountResponseDTO.class);
+			accountResponse.setAccountHolderName(user.getUserFullName());
 			
-		return modelMapper.map(account, AccountResponseDTO.class);
+			
+		return accountResponse;
 		
 		
 	}

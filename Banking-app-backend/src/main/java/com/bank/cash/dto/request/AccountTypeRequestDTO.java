@@ -1,7 +1,6 @@
 package com.bank.cash.dto.request;
 
-import java.math.BigDecimal;
-
+import com.bank.cash.enums.AccountStatus;
 import com.bank.cash.enums.TypeName;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +18,7 @@ public class AccountTypeRequestDTO {
 
     private Double annualMaintananceCharge;
     
-    
-    
+
+ 
     
 }

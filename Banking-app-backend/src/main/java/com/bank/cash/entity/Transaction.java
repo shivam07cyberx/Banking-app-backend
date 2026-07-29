@@ -51,7 +51,7 @@ public class Transaction {
 	@JoinColumn(name="from_account")
 	private Account fromAccount;
 
-	@NonNull
+	
 	@ManyToOne
 	@JoinColumn(name="to_account")
 	private Account toAccount;

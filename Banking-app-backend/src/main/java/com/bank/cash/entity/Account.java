@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.type.TrueFalseConverter;
 
-import com.bank.cash.enums.Role;
+import com.bank.cash.enums.AccountStatus;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Size;
@@ -43,8 +43,8 @@ public class Account {
 	
 	@Id
 	@Column(unique = true)
-	@SequenceGenerator(name="gen1",sequenceName = "account_number", initialValue = 10000000, allocationSize = 1)
-	@GeneratedValue( generator = "gen1", strategy = GenerationType.IDENTITY)
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	
 	private Long accountNumber;
@@ -73,6 +73,9 @@ public class Account {
 	private AccountType accountType;
 	
 	
+	@Enumerated(EnumType.STRING)
+	private AccountStatus accountStatus;
+	
 	@OneToMany(mappedBy = "fromAccount", fetch = FetchType.LAZY)
 	private List<Transaction> debitTransactions;
 
@@ -91,7 +94,7 @@ public class Account {
 	private LocalDateTime accounntCreatedAt;
 	
 	@UpdateTimestamp
-	@Column(insertable = false, updatable = true )
+	@Column( updatable = true )
 	private LocalDateTime accountUpdatedAt;
 	
 	
